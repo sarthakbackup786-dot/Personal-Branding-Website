@@ -1,0 +1,31 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+html { scroll-behavior: smooth; scroll-padding-top: 5rem; }
+body {
+  @apply bg-paper text-ink font-sans antialiased;
+  font-size: 1.0625rem;
+  line-height: 1.6;
+  font-feature-settings: 'kern' 1, 'liga' 1;
+}
+::selection { background: #A9C2B4; color: #0C281F; }
+
+.num { font-variant-numeric: lining-nums tabular-nums; }
+
+/* One orchestrated moment: the hero settles in on load. Nothing else animates on its own. */
+@keyframes settle { from { opacity: 0; transform: translateY(10px); } to { opacity: 1; transform: none; } }
+.settle { animation: settle 0.8s cubic-bezier(.2,.7,.2,1) both; }
+
+@media (prefers-reduced-motion: reduce) {
+  html { scroll-behavior: auto; }
+  .settle { animation: none; }
+  * { transition: none !important; }
+}
+
+a:focus-visible, button:focus-visible {
+  outline: 2px solid #8C1D2A;
+  outline-offset: 3px;
+  border-radius: 2px;
+}
+.on-green a:focus-visible, .on-green button:focus-visible { outline-color: #F1F2EE; }
